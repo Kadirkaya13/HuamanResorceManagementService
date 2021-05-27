@@ -4,10 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.hrms.business.abstracts.EmployerService;
+import com.example.hrms.core.results.DataResult;
+import com.example.hrms.core.results.Result;
+import com.example.hrms.core.results.SuccessDataResult;
+import com.example.hrms.core.results.SuccessResult;
 import com.example.hrms.entities.concretes.Employer;
 
 @RestController
@@ -19,20 +24,35 @@ public class EmployersController {
 		super();
 		this.employerService = employerService;
 	}
-	@GetMapping("/add")
-	public void add(Employer employer) {
+	
+	@PostMapping("/add")
+	public Result add(Employer employer) {
 		employerService.add(employer);
+		return new SuccessResult();
 	}
-	@GetMapping("/update")
-	public void update(Employer employer) {
+	@PostMapping("/update")
+	public Result update(Employer employer) {
 		employerService.update(employer);
+		return new SuccessResult();
 	}
-	@GetMapping("/delete")
-	public void delete(Employer employer) {
+	@PostMapping("/delete")
+	public Result delete(Employer employer) {
 		employerService.delete(employer);
+		return new SuccessResult();
 	}
 	@GetMapping("/getall")
-	public List<Employer> getAll(){
-		return employerService.getAll();
+	public DataResult<List<Employer>> getAll(){
+		employerService.getAll();
+		return new SuccessDataResult<List<Employer>>();
+	}
+	@PostMapping("/login")
+	public Result login(Employer employer) {
+		employerService.login(employer);
+		return new SuccessResult();
+	}
+	@PostMapping("/register")
+	public Result register(Employer employer) {
+		employerService.register(employer);
+		return new SuccessResult();
 	}
 }

@@ -5,11 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name="job_seekers_job_positions")
+@AllArgsConstructor
+@NoArgsConstructor
 public class JobSeekersJobPosition {
 	@Id
 	@Column(name="job_seeker_id")
@@ -18,9 +22,5 @@ public class JobSeekersJobPosition {
 	@Column(name="job_position_id")
 	private int jobPositionId;
 
-	public JobSeekersJobPosition(int jobSeekerId, int jobPositionId) {
-		super();
-		this.jobSeekerId = jobSeekerId;
-		this.jobPositionId = jobPositionId;
-	}
+	
 }

@@ -1,44 +1,33 @@
 package com.example.hrms.business.concretes;
 
-import java.util.List;
+import java.rmi.RemoteException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.hrms.business.abstracts.MernisService;
-import com.example.hrms.dataAccess.abstracts.MernisDao;
-import com.example.hrms.entities.concretes.Mernis;
+
+import tr.gov.nvi.tckimlik.WS.KPSPublicSoapProxy;
 @Service
-public class MernisManager implements MernisService{
-	MernisDao mernisDao;
-	@Autowired
-	public MernisManager(MernisDao mernisDao) {
-		super();
-		this.mernisDao = mernisDao;
+public class MernisManager implements MernisService<Object>{
+	KPSPublicSoapProxy kPSPublicSoapProxy;
+	
+	@Override
+	public boolean identityCheck(Object t, String identityNumber, String firstName, String lastName, int birthDay) {
+		
+			boolean result = false;
+			try {
+				result = kPSPublicSoapProxy.TCKimlikNoDogrula(Long.parseLong(identityNumber) , firstName, lastName, birthDay);
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		return result;
 	}
 
-	@Override
-	public void add(Mernis mernis) {
-		mernisDao.save(mernis);
-		
-	}
-
-	@Override
-	public void update(Mernis mernis) {
-		mernisDao.save(mernis);
-		
-	}
-
-	@Override
-	public void delete(Mernis mernis) {
-		mernisDao.deleteById(mernis.getId());
-		
-	}
-
-	@Override
-	public List<Mernis> getAll() {
-		
-		return mernisDao.findAll();
-	}
+	
 
 }

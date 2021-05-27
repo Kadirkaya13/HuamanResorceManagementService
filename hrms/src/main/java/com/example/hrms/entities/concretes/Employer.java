@@ -1,27 +1,37 @@
 package com.example.hrms.entities.concretes;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name="employers")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Employer {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="user_id")
-	private int userId;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+	private User user;
 	
-	@Column(name="job_id")
-	private int jobId;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "job_id", referencedColumnName = "id")
+	private JobPosition jobPosition;
 	
 	@Column(name="company_name")
 	private String companyName;
@@ -35,16 +45,7 @@ public class Employer {
 	@Column(name="tel_number")
 	private String phoneNumber;
 
-	public Employer(int id, int jobId, String companyName, String webAdress, String email, String phoneNumber, int userId) {
-		super();
-		this.id = id;
-		this.jobId = jobId;
-		this.companyName = companyName;
-		this.webAdress = webAdress;
-		this.email = email;
-		this.phoneNumber = phoneNumber;
-		this.userId=userId;
-	}
+	
 	
 	
 }

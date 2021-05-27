@@ -1,25 +1,35 @@
 package com.example.hrms.entities.concretes;
 
-import java.util.Date;
 
+import java.util.Calendar;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name="job_seekers")
+@AllArgsConstructor
+@NoArgsConstructor
 public class JobSeeker {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="user_id")
-	private int userId;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+	private User user;
 	
 	@Column(name="first_name")
 	private String firstName;
@@ -28,18 +38,10 @@ public class JobSeeker {
 	private String lastName;
 	
 	@Column(name="birth_date")
-	private Date birthDate;
+	private Calendar birthDate;
 	
 	@Column(name="national_id")
 	private String nationalId;
 
-	public JobSeeker(int id, String firstName, String lastName, Date birthDate, String nationalId, int userId) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.birthDate = birthDate;
-		this.nationalId = nationalId;
-		this.userId = userId;
-	}
+	
 }
