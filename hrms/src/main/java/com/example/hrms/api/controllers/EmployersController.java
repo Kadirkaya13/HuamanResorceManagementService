@@ -27,32 +27,32 @@ public class EmployersController {
 	
 	@PostMapping("/add")
 	public Result add(Employer employer) {
-		employerService.add(employer);
-		return new SuccessResult();
+		
+		return employerService.add(employer);
 	}
 	@PostMapping("/update")
 	public Result update(Employer employer) {
-		employerService.update(employer);
-		return new SuccessResult();
+		
+		return employerService.update(employer);
 	}
 	@PostMapping("/delete")
 	public Result delete(Employer employer) {
-		employerService.delete(employer);
-		return new SuccessResult();
+		
+		return employerService.delete(employer);
 	}
 	@GetMapping("/getall")
 	public DataResult<List<Employer>> getAll(){
-		employerService.getAll();
-		return new SuccessDataResult<List<Employer>>();
+		
+		return employerService.getAll();
 	}
 	@PostMapping("/login")
 	public Result login(Employer employer) {
-		employerService.login(employer);
-		return new SuccessResult();
+		
+		return employerService.login(employer);
 	}
 	@PostMapping("/register")
 	public Result register(Employer employer) {
-		employerService.register(employer);
-		return new SuccessResult();
+		
+		return employerService.register(employer);
 	}
 }

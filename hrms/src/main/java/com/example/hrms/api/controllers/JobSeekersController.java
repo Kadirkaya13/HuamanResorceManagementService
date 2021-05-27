@@ -26,31 +26,30 @@ public class JobSeekersController {
 	}
 	@PostMapping("/add")
 	public Result add(JobSeeker jobSeeker) {
-		jobSeekerService.add(jobSeeker);
-		return new SuccessResult();
+		
+		return jobSeekerService.add(jobSeeker);
 	}
 	@PostMapping("/update")
 	public Result update(JobSeeker jobSeeker) {
-		jobSeekerService.update(jobSeeker);
-		return new SuccessResult();
+		return jobSeekerService.update(jobSeeker);
 	}
 	@PostMapping("/delete")
 	public Result delete(JobSeeker jobSeeker) {
-		jobSeekerService.delete(jobSeeker);
-		return new SuccessResult();
+		
+		return jobSeekerService.delete(jobSeeker);
 	}
 	@GetMapping("/getall")
 	public DataResult<List<JobSeeker>> getAll(){
-		jobSeekerService.getAll();
-		return new SuccessDataResult<List<JobSeeker>>();
+		
+		return jobSeekerService.getAll();
 	}
 	@PostMapping("/login")
-	public Result login() {
-		return new SuccessResult();
+	public Result login(JobSeeker jobSeeker) {
+		return jobSeekerService.login(jobSeeker);
 	}
 	@PostMapping("/register")
-	public Result register() {
-		return new SuccessResult();
+	public Result register(JobSeeker jobSeeker) {
+		return jobSeekerService.register(jobSeeker);
 	}
 	
 }
