@@ -29,15 +29,17 @@ public class Employee {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 	
-	@Column(name="position_id")
-	private int positionId;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "position_Id", referencedColumnName = "id")
+	private JobPosition jobPosition;
 	
-	@Column(name="first_name")
+	@Column(name="first_name", length = 2048)
 	private String firstName;
 	
-	@Column(name="last_name")
+	@Column(name="last_name",length = 2048)
 	private String lastName;
 
+	
 	
 
 }

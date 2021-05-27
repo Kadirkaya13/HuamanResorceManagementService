@@ -24,7 +24,7 @@ public class JobPosition {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="job_name")
+	@Column(name="job_name" ,length = 2048)
 	private String jobName;
 	
 	

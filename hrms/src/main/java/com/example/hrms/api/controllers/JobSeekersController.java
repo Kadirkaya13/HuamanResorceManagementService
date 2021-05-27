@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.hrms.business.abstracts.JobSeekerService;
+import com.example.hrms.core.abstracts.EmailVerificationService;
 import com.example.hrms.core.results.DataResult;
 import com.example.hrms.core.results.Result;
 import com.example.hrms.core.results.SuccessDataResult;
@@ -47,7 +48,7 @@ public class JobSeekersController {
 	public Result login() {
 		return new SuccessResult();
 	}
-	@PostMapping("/login")
+	@PostMapping("/register")
 	public Result register() {
 		return new SuccessResult();
 	}
