@@ -7,10 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
 @Table(name="mernis")
+@EqualsAndHashCode(callSuper = false)
 public class Mernis {
 	
 	@Id

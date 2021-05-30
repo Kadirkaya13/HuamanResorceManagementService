@@ -11,12 +11,14 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name="confirmations")
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class Confirmation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

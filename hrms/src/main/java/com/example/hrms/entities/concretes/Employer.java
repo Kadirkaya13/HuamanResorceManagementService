@@ -13,10 +13,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -24,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Table(name="employers")
 @AllArgsConstructor
 @NoArgsConstructor
-
+@EqualsAndHashCode(callSuper = false)
 public class Employer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
@@ -35,22 +37,16 @@ public class Employer {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "job_id", referencedColumnName = "id")
-	private JobPosition jobPosition;
-	
 	@Column(name="company_name")
 	private String companyName;
 	
 	@Column(name="web_adress")
 	private String webAdress;
 	
-	@Column(name="email")
-	private String email;
-	
 	@Column(name="tel_number")
 	private String phoneNumber;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="employer")
 	private List<JobAdvertisement> jobAdvertisements;
 	

@@ -15,12 +15,14 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name="job_seekers")
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class JobSeeker {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY )

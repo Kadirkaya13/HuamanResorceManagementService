@@ -10,10 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -21,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Table(name="job_positions")
 @AllArgsConstructor
 @NoArgsConstructor
-
+@EqualsAndHashCode(callSuper = false)
 public class JobPosition {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
@@ -31,9 +33,11 @@ public class JobPosition {
 	@Column(name="job_name" ,length = 2048)
 	private String jobName;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="jobPosition")
 	private List<Employee> employees;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="jobPosition")
 	private List<JobAdvertisement> jobAdvertisements;
 	
