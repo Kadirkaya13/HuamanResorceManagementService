@@ -18,24 +18,21 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name="job_positions")
+@Table(name="cities")
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class JobPosition {
+public class City {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY )
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="job_name" ,length = 2048)
-	private String jobName;
+	@Column(name="city_name")
+	private String cityName;
 	
-	@OneToMany(mappedBy="jobPosition")
-	private List<Employee> employees;
-	
-	@OneToMany(mappedBy="jobPosition")
+	@OneToMany(mappedBy="city")
 	private List<JobAdvertisement> jobAdvertisements;
 	
-	
+
 }
