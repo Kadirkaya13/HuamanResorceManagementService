@@ -5,62 +5,62 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.hrms.business.abstracts.JobSeekerService;
+import com.example.hrms.business.abstracts.CandidateService;
 import com.example.hrms.core.abstracts.EmailVerificationService;
 import com.example.hrms.core.results.DataResult;
 import com.example.hrms.core.results.ErrorResult;
 import com.example.hrms.core.results.Result;
 import com.example.hrms.core.results.SuccessDataResult;
 import com.example.hrms.core.results.SuccessResult;
-import com.example.hrms.dataAccess.abstracts.JobSeekerDao;
-import com.example.hrms.entities.concretes.JobSeeker;
+import com.example.hrms.dataAccess.abstracts.CandidateDao;
+import com.example.hrms.entities.concretes.Candidates;
 
 @Service
-public class JobSeekerManager implements JobSeekerService{
+public class CandidateManager implements CandidateService{
 
-	JobSeekerDao jobSeekerDao;
+	CandidateDao jobSeekerDao;
 	EmailVerificationService emailVerificationService;
 	
 	@Autowired
-	public JobSeekerManager(JobSeekerDao jobSeekerDao,EmailVerificationService emailVerificationService) {
+	public CandidateManager(CandidateDao jobSeekerDao,EmailVerificationService emailVerificationService) {
 		super();
 		this.jobSeekerDao = jobSeekerDao;
 		this.emailVerificationService=emailVerificationService;
 	}
 
 	@Override
-	public Result add(JobSeeker jobSeeker) {
+	public Result add(Candidates jobSeeker) {
 		this.jobSeekerDao.save(jobSeeker);
 		return new SuccessResult();
 	}
 
 	@Override
-	public Result update(JobSeeker jobSeeker) {
+	public Result update(Candidates jobSeeker) {
 		jobSeekerDao.save(jobSeeker);
 		return new SuccessResult();
 	}
 
 	@Override
-	public Result delete(JobSeeker jobSeeker) {
+	public Result delete(Candidates jobSeeker) {
 		jobSeekerDao.deleteById(jobSeeker.getId());
 		return new SuccessResult();
 		
 	}
 
 	@Override
-	public DataResult<List<JobSeeker>> getAll() {
+	public DataResult<List<Candidates>> getAll() {
 		
-		return new SuccessDataResult<List<JobSeeker>>( jobSeekerDao.findAll());
+		return new SuccessDataResult<List<Candidates>>( jobSeekerDao.findAll());
 	}
 
 	@Override
-	public Result login(JobSeeker jobSeeker) {
+	public Result login(Candidates jobSeeker) {
 		return new SuccessResult("giriş yapıldı");
 	}
 
 	@Override
-	public Result register(JobSeeker jobSeeker) {
-		List<JobSeeker> jobSeekers= this.jobSeekerDao.findAll();
+	public Result register(Candidates jobSeeker) {
+		List<Candidates> jobSeekers= this.jobSeekerDao.findAll();
 		if (checkIfUserExistsBefore(jobSeekers, jobSeeker).isSuccess()) {
 			jobSeekerDao.save(jobSeeker);
 			this.emailVerificationService.send(jobSeeker.getUser().getEmail());
@@ -68,8 +68,8 @@ public class JobSeekerManager implements JobSeekerService{
 		}
 		return new ErrorResult("Bu bilgiler zaten mevcut");
 	}
-	private Result checkIfUserExistsBefore(List<JobSeeker> jobSeekers, JobSeeker jobSeeker){
-        for (JobSeeker jobSeekerCheck: jobSeekers) {
+	private Result checkIfUserExistsBefore(List<Candidates> jobSeekers, Candidates jobSeeker){
+        for (Candidates jobSeekerCheck: jobSeekers) {
             if (jobSeekerCheck.getUser().getEmail().equals(jobSeeker.getUser().getEmail())){
                 return new ErrorResult("Bu email mevcut.");
             }	          

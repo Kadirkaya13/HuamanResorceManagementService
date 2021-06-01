@@ -19,11 +19,11 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 @Data
 @Entity
-@Table(name="job_seekers")
+@Table(name="candidates")
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class JobSeeker {
+public class Candidates {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	@Column(name="id")
