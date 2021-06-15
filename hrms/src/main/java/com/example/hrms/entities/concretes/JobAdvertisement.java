@@ -1,6 +1,6 @@
 package com.example.hrms.entities.concretes;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -24,8 +23,6 @@ import lombok.NoArgsConstructor;
 @Table(name="job_advertisement")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","employer","city","jobPosition"})
-@EqualsAndHashCode(callSuper = false)
 public class JobAdvertisement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
@@ -37,7 +34,7 @@ public class JobAdvertisement {
 	private Employer employer;
 	
 	@ManyToOne()
-	@JoinColumn(name="job_position_id")
+	@JoinColumn(name="job_position_id" , referencedColumnName = "id")
 	private JobPosition jobPosition;
 	
 	@ManyToOne()
@@ -61,4 +58,8 @@ public class JobAdvertisement {
 	
 	@Column(name="release_date")
 	private Date releaseDate;
+	
+	@Column(name="deadline")
+	private Date deadline;
+	
 }

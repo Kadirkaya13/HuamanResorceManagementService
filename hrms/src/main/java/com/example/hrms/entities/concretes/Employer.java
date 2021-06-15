@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Table(name="employers")
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","JobAdvertisement"})
 public class Employer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY )

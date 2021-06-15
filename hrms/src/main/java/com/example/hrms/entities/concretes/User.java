@@ -18,7 +18,6 @@ import lombok.NoArgsConstructor;
 @Table(name="users")
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY )

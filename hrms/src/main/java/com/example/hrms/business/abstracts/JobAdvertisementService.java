@@ -10,8 +10,9 @@ public interface JobAdvertisementService {
 	Result add(JobAdvertisement jobAdvertisement);
 	Result update(JobAdvertisement jobAdvertisement);
 	Result delete(JobAdvertisement jobAdvertisement);
+	DataResult<JobAdvertisement> getById(int id);
 	DataResult<List<JobAdvertisement>> getAll();
 	DataResult<List<JobAdvertisement>> getAllSorted();
-	DataResult<List<JobAdvertisement>> getByIsActive(boolean status);
+	DataResult<List<JobAdvertisement>> getByIsActive();
 	DataResult<List<JobAdvertisement>> getByIsActiveAndEmployer_CompanyName(boolean status,String companyName);
 }	

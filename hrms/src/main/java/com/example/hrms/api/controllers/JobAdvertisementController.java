@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.PostUpdate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,8 @@ import com.example.hrms.core.results.Result;
 import com.example.hrms.entities.concretes.JobAdvertisement;
 
 @RestController
-@RequestMapping("/api/jobAdvertisement")
+@RequestMapping("/api/jobAdvertisements")
+@CrossOrigin
 public class JobAdvertisementController {
 	
 	JobAdvertisementService advertisementService;
@@ -51,12 +53,16 @@ public class JobAdvertisementController {
 	public DataResult<List<JobAdvertisement>> getAllSorted(){
 		return advertisementService.getAllSorted();
 	}
-	@GetMapping("/getByIsActive")
-	public DataResult<List<JobAdvertisement>> getByIsActive(boolean status){
-		return advertisementService.getByIsActive(status);
+	@GetMapping("/getallbyactive")
+	public DataResult<List<JobAdvertisement>> getByIsActive(){
+		return advertisementService.getByIsActive();
 	}
 	@GetMapping("/getByIsActiveAndEmployer")
 	public DataResult<List<JobAdvertisement>> getByIsActiveAndEmployer_CompanyName(boolean status, String companyName){
 		return advertisementService.getByIsActiveAndEmployer_CompanyName(status, companyName);
+	}
+	@GetMapping("/getbyid")
+	public DataResult<JobAdvertisement> getById(int id){
+		return advertisementService.getById(id);
 	}
 }

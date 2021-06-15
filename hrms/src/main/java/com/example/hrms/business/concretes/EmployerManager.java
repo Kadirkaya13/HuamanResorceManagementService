@@ -14,7 +14,7 @@ import com.example.hrms.core.results.SuccessDataResult;
 import com.example.hrms.core.results.SuccessResult;
 import com.example.hrms.dataAccess.abstracts.EmployerDao;
 import com.example.hrms.entities.concretes.Employer;
-import com.example.hrms.entities.concretes.Candidates;
+import com.example.hrms.entities.concretes.Candidate;
 @Service
 public class EmployerManager implements EmployerService {
 

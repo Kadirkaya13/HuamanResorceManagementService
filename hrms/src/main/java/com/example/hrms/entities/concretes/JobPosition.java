@@ -23,6 +23,7 @@ import lombok.NoArgsConstructor;
 @Table(name="job_positions")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","JobAdvertisement"})
 @EqualsAndHashCode(callSuper = false)
 public class JobPosition {
 	@Id

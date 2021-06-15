@@ -23,10 +23,10 @@ import lombok.NoArgsConstructor;
 @Table(name="cities")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","JobAdvertisement"})
 @EqualsAndHashCode(callSuper = false)
 public class City {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
